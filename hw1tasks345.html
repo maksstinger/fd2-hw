@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script>
+  //Забираем данные пользователя из формы и немножечко "валидируем" ;)
+        function completeForm() {
+            var parts = "Фамилия: " + document.worksheet.Surname.value.replace(/[0-9]/g,"") +
+                "\nИмя: " + document.worksheet.Name.value.replace(/[0-9]/g,"") +
+                "\nОтчество: " + document.worksheet.MiddleName.value.replace(/[0-9]/g,"") +
+                "\nВозраст: " + document.worksheet.Age.value;
+           
+            alert(parts);
+        }
+
+        function checkAge(age) {
+            if(age>=0 && age<=123)
+                return age;
+            else
+                return  "0";
+            
+        }
+        
+    </script>
+</head>
+<body>
+
+<!-- Анкета -->
+<h1>Введите ваши данные</h1>
+<form name="worksheet">
+        <table>
+            <tbody>
+                <tr><td><b>Фамилия:<b></td>
+                    <td><input name="Surname" size=25
+                          onBlur="this.value=this.value.toUpperCase()"></td></tr>
+                <tr><td><b>Имя:<b></td>
+                    <td><input name="Name" size=25
+                          onBlur="this.value=this.value.toUpperCase()"></td></tr>
+                <tr><td><b>Отчество:<b></td>
+                    <td><input name="MiddleName" size=25
+                          onBlur="this.value=this.value.toUpperCase()"></td></tr>
+                <tr><td><b>Возраст:<b></td>
+                    <td><input name="Age" type="number" min="0" max="123" size="3" placeholder="0-123" pattern="[0-9]{3}"
+                          onBlur="this.value=checkAge(this.value)"
+                          onFocus="this.select()"></td></tr>
+            </tbody>             
+    </table>
+
+<!--Кнопки-->
+    <input type="button" value="Отправить" onClick="completeForm()">
+    <input type="reset" value="Сброс">
+</form>
+</body>
+</html>

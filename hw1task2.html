@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+</head>
+<body>
+<script>
+/*Недостатки, от которых не додумался как уйти:
+1. Если пользователь введет для поиска буквы "АА", а в строку - "А", то ему выдаст 2 повторения, хотя оно одно.
+т.е. надо как-то отсечь повторяющиеся буквы...
+
+2. Если пользователь не вводит ничего - как его заставить ввести или красиво намекнуть, что он слишком хитрый?..*/
+
+function countDefiniteLetters () {
+   
+    //Фильтруем введенные данные в массивы
+    var userLetters = "" + document.greatResearch.userFillLetters.value;
+        userLetters = userLetters.toLowerCase();
+    
+        
+    var filteredUserLetters = /[a-zа-яё]/gi;
+        
+        userLetters = userLetters.match(filteredUserLetters);
+        console.log(userLetters);
+     
+      
+                
+    var userString = "" + document.greatResearch.userFillString.value;
+        userString = userString.toLowerCase();
+    
+    var filteredUserString = /[a-zа-яё]/gi;
+        userString = userString.match(filteredUserString);
+        console.log(userString);
+
+//Сравниваем два массива
+
+    var array3 = [];
+for (i=0; i < userString.length;  i++) {
+    
+    for (j=0; j< userLetters.length; j++) {
+       
+        if (userLetters[j] === userString[i]) array3.push(userString[i])
+                
+    } 
+
+}
+
+alert("Количество букв в вашей строке, совпавших с вашим условием = " + array3.length);
+}
+
+
+</script>
+
+
+ <!-- Форма для ввода данных пользователем -->
+
+<form name="greatResearch">
+   
+    <table>
+            <tbody>
+                <tr><td><b>Введите букву(-ы) для подсчета:<b></td>
+                    <td><input name="userFillLetters" size="33" maxlength="33"></td></tr>
+                <tr><td><b>Введите исследуемый текст:<b></td>
+                    <td><input name="userFillString" size="50" maxlength="999"></td></tr>
+            </tbody>      
+             
+<!--Кнопки-->
+
+    <input type="button" value="Отправить" onClick="countDefiniteLetters()">
+    <input type="reset" value="Сброс">      
+</body>
+</html>
